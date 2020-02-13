@@ -12,80 +12,207 @@ struct value {
 void Sale (struct value COFFEE) {
 
 	int price = COFFEE.count_ru;
+	int price2 = COFFEE.count_jpy;
+	int sda;
 	int payment = 0;
 	bool life = true;
+	bool life2 = true;
+	int choice, col;
+	int sugar = 15;
+
+	printf("%s\n", "Выберите сколько сахара: ");
+	printf("\n");
+	printf("%s\n", "1: Нет сахара");
+	printf("%s\n", "2: один кубик сахара");
+	printf("%s\n", "3: свой вариант (максимум 5)");
+	scanf("%i", &choice);
+
+	while (life) {
+
+	    switch (choice) {
+
+		case 1:
+
+		    life = false;
+		    break;
+
+		case 2:
+
+		    life = false;
+		    price += sugar;
+		    price += (sugar * 2);
+		    break;
+
+		case 3:
+
+		    while(life) {
+
+		        printf("%s\n", "Выберите количество сахара: ");
+			scanf("%i", &col);
+
+			if ((5 >= col) && (col >= 0)) {
+
+			    price += (sugar * col);
+			    price2 += ((sugar * col) * 2);
+			    life = false;
+		        }
+
+			else {
+
+			    printf("%s\n", "Нельзя столько");
+			}
+		    }
+		    break;
+
+		default:
+
+		    printf("%s\n", "Нет такой операции.");
+		    break;
+	    }
+	}
 
 	printf("\n");
 	printf("%s%s\n", "Вы заказали: ", COFFEE.name);
 	printf("%s%i\n", "Цена в Р: ", COFFEE.count_ru);
 	printf("%s%i\n", "Цена в Йен: ", COFFEE.count_jpy);
+	printf("\n");
+	printf("%s\n", "Выберите валюту, которой оплатите: ");
+	printf("\n");
+	printf("%s\n", "1: Рублях");
+	printf("%s\n", "2: Йенах");
+	scanf("%i", &choice);
 
-	while(life) {
+	while (life2) {
 
-	    printf("%s%i\n", "Введите сумму:", price -= payment);
-	    scanf("%i", &payment);
+	    switch (choice) {
 
-	    if (payment >= price) {
+		case 1:
+		{
+		    life2 = false;
+		    life = true;
 
-		life = false;
+		    while(life) {
+
+			sda = price;
+
+			printf("%s%i\n", "Введите сумму:", price);
+			scanf("%i", &payment);
+
+			if (payment >= 0) {
+
+			    sda = payment - price;
+			    price -= payment;
+			}
+
+			if (sda >= 0) {
+
+			    life = false;
+			}
+		    }
+
+		    printf("%s%i\n", "Ваша сдача: ", sda);
+		    printf("%s\n", "Приходите еще!");
+			break;
+		}
+		case 2:
+
+		    life2 = false;
+		    life = true;
+			sda = price2;
+
+		    while(life) {
+
+			printf("%s%i\n", "Введите сумму:", price2);
+			scanf("%i", &payment);
+
+			if (payment >= 0) {
+
+			    sda = payment - price2;
+			    price2 -= payment;
+			}
+
+			if (sda >= 0) {
+
+			    life = false;
+			}
+		    }
+
+		    printf("%s%i\n", "Ваша сдача: ", sda);
+		    printf("%s\n", "Приходите еще!");
+			break;
+
+		default:
+
+		    printf("%s\n", "Нет операции.");
+		    break;
 	    }
 	}
-
-	printf("%s%i\n", "Ваша сдача: ", payment - price);
-	printf("%s\n", "Приходите еще!");
 }
 
 void cofe() {
 
+    bool life = true;
     int choice;
 
-	printf("\n");
-	printf("%s\n", "Выберите кофе:");
-	printf("\n");
-	printf("%s\n", "1: Эспрессо");
-	printf("%s\n", "2: Капучино");
-	printf("%s\n", "3: Латте");
-	printf("%s\n", "4: Американо");
-	printf("%s\n", "5: Раф");
-	scanf("%i", &choice);
+	while(life) {
 
-	switch(choice) {
+	    printf("\n");
+	    printf("%s\n", "Выберите кофе:");
+	    printf("\n");
+	    printf("%s\n", "1: Эспрессо");
+	    printf("%s\n", "2: Капучино");
+	    printf("%s\n", "3: Латте");
+	    printf("%s\n", "4: Американо");
+	    printf("%s\n", "5: Раф");
+	    scanf("%i", &choice);
 
-	    case 1: {
+	    switch(choice) {
 
-		struct value res={"Эспрессо", 100, 173};
-		Sale(res);
-		break;
-	    }
+		case 1: {
 
-	    case 2: {
+		    life = false;
+		    struct value res={"Эспрессо", 100, 173};
+		    Sale(res);
+		    break;
+		}
 
-		struct value res2={"Капучино\0", 120, 208};
-		Sale(res2);
-		break;
-	    }
+		case 2: {
 
-	    case 3: {
-		struct value res3={"Латте\0", 150, 260};
-		Sale(res3);
-		break;
-	    }
+		    life = false;
+		    struct value res2={"Капучино\0", 120, 208};
+		    Sale(res2);
+		    break;
+		}
 
-	    case 4: {
-		struct value res4={"Американо\0", 100, 173};
-		Sale(res4);
-		break;
-	    }
+		case 3: {
 
-	    case 5: {
-		struct value res5={"Раф\0", 170, 294};
-		Sale(res5);
-		break;
-	    }
+		    life = false;
+		    struct value res3={"Латте\0", 150, 260};
+		    Sale(res3);
+		    break;
+		}
 
-	    default: {
-		printf("Нет такого действия.");
-		break;
+		case 4: {
+
+		    life = false;
+		    struct value res4={"Американо\0", 100, 173};
+		    Sale(res4);
+		    break;
+		}
+
+		case 5: {
+
+		    life = false;
+		    struct value res5={"Раф\0", 170, 294};
+		    Sale(res5);
+		    break;
+		}
+
+		default: {
+
+		    printf("Нет такого действия.");
+		    break;
+		}
 	    }
 	}
 
