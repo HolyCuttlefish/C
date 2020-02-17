@@ -20,14 +20,14 @@ void Sale (struct value COFFEE) {
 	int choice, col;
 	int sugar = 15;
 
+	while (life) {
+
 	printf("%s\n", "Выберите сколько сахара: ");
 	printf("\n");
 	printf("%s\n", "1: Нет сахара");
 	printf("%s\n", "2: один кубик сахара");
 	printf("%s\n", "3: свой вариант (максимум 5)");
 	scanf("%i", &choice);
-
-	while (life) {
 
 	    switch (choice) {
 
@@ -60,6 +60,7 @@ void Sale (struct value COFFEE) {
 			else {
 
 			    printf("%s\n", "Нельзя столько");
+			    printf("\n");
 			}
 		    }
 		    break;
@@ -71,6 +72,8 @@ void Sale (struct value COFFEE) {
 	    }
 	}
 
+	while (life2) {
+
 	printf("\n");
 	printf("%s%s\n", "Вы заказали: ", COFFEE.name);
 	printf("%s%i\n", "Цена в Р: ", COFFEE.count_ru);
@@ -81,8 +84,6 @@ void Sale (struct value COFFEE) {
 	printf("%s\n", "1: Рублях");
 	printf("%s\n", "2: Йенах");
 	scanf("%i", &choice);
-
-	while (life2) {
 
 	    switch (choice) {
 
@@ -99,6 +100,7 @@ void Sale (struct value COFFEE) {
 			scanf("%i", &payment);
 
 			if (payment >= 0) {
+			if (payment >= 0) {
 
 			    sda = payment - price;
 			    price -= payment;
@@ -107,6 +109,7 @@ void Sale (struct value COFFEE) {
 			if (sda >= 0) {
 
 			    life = false;
+			}
 			}
 		    }
 
@@ -125,6 +128,8 @@ void Sale (struct value COFFEE) {
 			printf("%s%i\n", "Введите сумму:", price2);
 			scanf("%i", &payment);
 
+			if (payment >= 0){
+
 			if (payment >= 0) {
 
 			    sda = payment - price2;
@@ -134,6 +139,7 @@ void Sale (struct value COFFEE) {
 			if (sda >= 0) {
 
 			    life = false;
+			}
 			}
 		    }
 
