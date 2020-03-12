@@ -25,6 +25,7 @@ int main() {
 	printf("%s\n", "Выберите действие:");
 	printf("\n");
 	printf("%s\n", "1: Выбрать кофе.");
+	printf("%s\n", "2: Чек");
 	printf("%s\n", "0: Выход.");
 	scanf("%i", &choice);
 
@@ -39,6 +40,12 @@ int main() {
 	    case 1:
 
 		cofe();
+		life = false;
+		break;
+
+	    case 2:
+
+		save();
 		life = false;
 		break;
 	}

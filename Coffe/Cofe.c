@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 struct value {
@@ -13,6 +14,14 @@ void cofe() {
 
     bool life = true;
     int choice;
+    FILE *file = NULL;
+    file = fopen("file.txt", "a");
+
+    if (!file){
+
+	printf("%s\n", "Ошибка");
+	exit(0);
+    }
 
 	while(life) {
 

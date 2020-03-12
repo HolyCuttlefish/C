@@ -12,6 +12,7 @@ struct value {
 
 int Sale (struct value COFFEE) {
 
+	char reser[200];
 	int price = COFFEE.count_ru;
 	int price2 = COFFEE.count_jpy;
 	int sda;
@@ -30,9 +31,7 @@ int Sale (struct value COFFEE) {
 	    exit(0);
 	}
 
-	fprintf(file, "%d\n", price);
-	fprintf(file, "%d\n", price2);
-	fprintf(file, "%s\n", "");
+	fprintf(file, "%s\n", COFFEE.name);
 
 	while (life) {
 
@@ -48,6 +47,7 @@ int Sale (struct value COFFEE) {
 		case 1:
 
 		    life = false;
+		    fprintf(file, "%d\n", 0);
 		    break;
 
 		case 2:
@@ -55,6 +55,7 @@ int Sale (struct value COFFEE) {
 		    life = false;
 		    price += sugar;
 		    price += (sugar * 2);
+		    fprintf(file, "%d\n", 1);
 		    break;
 
 		case 3:
@@ -69,6 +70,7 @@ int Sale (struct value COFFEE) {
 			    price += (sugar * col);
 			    price2 += ((sugar * col) * 2);
 			    life = false;
+			    fprintf(file, "%d\n", col);
 		        }
 
 			else {
@@ -89,7 +91,7 @@ int Sale (struct value COFFEE) {
 	while (life2) {
 
 	printf("\n");
-	printf("%s%s\n", "Вы заказали: ", COFFEE.name);
+	printf("%s%s\n", "Вы заказали: ",  COFFEE.name);
 	printf("%s%i\n", "Цена в Р: ", COFFEE.count_ru);
 	printf("%s%i\n", "Цена в Йен: ", COFFEE.count_jpy);
 	printf("\n");
@@ -105,6 +107,10 @@ int Sale (struct value COFFEE) {
 		{
 		    life2 = false;
 		    life = true;
+
+
+		    fprintf(file, "%d\n", price);
+		    fprintf(file, "%s\n", "");
 
 		    while(life) {
 
@@ -129,6 +135,18 @@ int Sale (struct value COFFEE) {
 
 		    printf("%s%i\n", "Ваша сдача: ", sda);
 		    printf("%s\n", "Приходите еще!");
+
+		    fclose(file);
+
+		    file = fopen("file.txt", "r");
+
+		    while(fgets(reser, 200, file) != NULL) {
+
+			printf("%s", reser);
+		    }
+
+		    printf("\n");
+		    fclose(file);
 			break;
 		}
 		case 2:
@@ -136,6 +154,9 @@ int Sale (struct value COFFEE) {
 		    life2 = false;
 		    life = true;
 			sda = price2;
+
+		fprintf(file, "%d\n", price2);
+		fprintf(file, "%s\n", "");
 
 		    while(life) {
 
@@ -159,6 +180,20 @@ int Sale (struct value COFFEE) {
 
 		    printf("%s%i\n", "Ваша сдача: ", sda);
 		    printf("%s\n", "Приходите еще!");
+		    printf("\n");
+
+		    fclose(file);
+
+		    file = fopen("file.txt", "r");
+
+		    while(fgets(reser, 200, file) != NULL) {
+
+			printf("%s", reser);
+		    }
+
+		    printf("\n");
+		    fclose(file);
+
 			break;
 
 		default:
